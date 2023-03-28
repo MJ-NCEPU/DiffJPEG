@@ -1,4 +1,4 @@
-# DiffJPEG
+# DiffJPEG 支持Batch批量处理和单个处理，运行请在test.py,并修改读取图片路径。
 # The image JPEG with pytorch,Support input of Batch。
 # The specific information and code in *test.py*。
 # The input image should be a square and its H and W should be a multiple of 8。
