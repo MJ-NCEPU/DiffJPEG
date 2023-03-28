@@ -25,3 +25,4 @@
     print("len(out):", len(out))
     for i in range(len(out)):
         imsave(out[i], f'./image/test{i}.png')
+![样例](https://github.com/MJ-NCEPU/DiffJPEG/blob/main/sample1.png)
