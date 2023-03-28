@@ -1,7 +1,8 @@
 # DiffJPEG
 # The image JPEG with pytorch,Support input of Batch.
 # The specific information and code in test.py
-'''parser = argparse.ArgumentParser()
+'''python
+parser = argparse.ArgumentParser()
 parser.add_argument("--batch_size", type=int)
 arg = parser.parse_args()
 arg.batch_size = 30
