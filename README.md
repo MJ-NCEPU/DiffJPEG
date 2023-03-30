@@ -17,9 +17,22 @@
     img = torch.Tensor(img).unsqueeze(0).permute(0, 3, 1, 2)  # 1chw
     img = img.repeat(arg.batch_size, 1, 1, 1) #bchw
     B, C, H, W = img.size()
+    W_ = W
+    H_ = H
+
+    h_pad = 0
+    w_pad = 0
+    if H % 16 != 0:
+        h_pad = 16 - H % 16
+        H = H + h_pad
+    if W % 16 != 0:
+        w_pad = 16 - W % 16
+        W = W + w_pad
+
+    img = F.pad(img, (0, w_pad, 0, h_pad), mode='constant', value=0)
     
     jpeg = DiffJPEG(batch=B, height=H, width=W, differentiable=True, quality=quality, arg=arg)
-    output = jpeg(img).permute(0, 2, 3, 1)  # bhwc
+    output = jpeg(img)[:, :, 0:H_, 0:W_].permute(0, 2, 3, 1)  # bhwc
     
     out = output.detach().numpy()
     print("out", type(out), out.shape, out[0][0][0][0])
